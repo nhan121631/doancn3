@@ -1,0 +1,16 @@
+@startuml
+actor NgườiDùng
+participant ỨngDụng
+participant Webcam
+participant MôHìnhDựĐoán
+participant GiaoDiện
+
+NgườiDùng -> ỨngDụng : Khởi động ứng dụng
+ỨngDụng -> Webcam : Bắt đầu ghi hình
+loop Liên tục
+    Webcam -> ỨngDụng : Gửi khung hình
+    ỨngDụng -> MôHìnhDựĐoán : Dự đoán kí hiệu
+    MôHìnhDựĐoán --> ỨngDụng : Kết quả dự đoán
+    ỨngDụng -> GiaoDiện : Hiển thị văn bản dự đoán
+end
+@enduml

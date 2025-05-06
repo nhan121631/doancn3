@@ -2,9 +2,10 @@ import pickle
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import numpy as np
-
+import seaborn as sns
+import matplotlib.pyplot as plt
 # load data
 data_dict = pickle.load(open('./data.pickle', 'rb'))
 
@@ -22,6 +23,10 @@ y_predict = model.predict(x_test)
 score = accuracy_score(y_predict, y_test)
 
 print('{}% of samples were classified correctly !'.format(score * 100))
+
+# Classification report: precision, recall, f1-score
+print("\nClassification Report:")
+print(classification_report(y_test, y_predict))
 
 f = open('model.p', 'wb')
 pickle.dump({'model': model}, f)

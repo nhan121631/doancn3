@@ -10,9 +10,6 @@ import subprocess
 from tkinter import messagebox, simpledialog
 import os
 
-
-
-
 LABEL_FILE = "labels.txt"
 DATA_DIR = "./data_3"
 
