@@ -1,16 +1,23 @@
 @startuml
 actor NgườiDùng
 participant ỨngDụng
-participant Webcam
-participant MôHìnhDựĐoán
+participant Dataset
+participant MôHình
 participant GiaoDiện
 
-NgườiDùng -> ỨngDụng : Khởi động ứng dụng
-ỨngDụng -> Webcam : Bắt đầu ghi hình
-loop Liên tục
-    Webcam -> ỨngDụng : Gửi khung hình
-    ỨngDụng -> MôHìnhDựĐoán : Dự đoán kí hiệu
-    MôHìnhDựĐoán --> ỨngDụng : Kết quả dự đoán
-    ỨngDụng -> GiaoDiện : Hiển thị văn bản dự đoán
+NgườiDùng -> ỨngDụng : Chọn thêm dữ liệu
+ỨngDụng -> GiaoDiện : Hiển thị form nhập tên dữ liệu
+NgườiDùng -> GiaoDiện : Nhập tên dữ liệu
+GiaoDiện -> ỨngDụng : Gửi tên dữ liệu
+
+alt Tên đã tồn tại
+    ỨngDụng -> GiaoDiện : Thông báo trùng\nYêu cầu nhập lại
+else Tên hợp lệ
+    ỨngDụng -> GiaoDiện : Hiển thị giao diện thu thập dữ liệu
+    NgườiDùng -> ỨngDụng : Ấn "q" để bắt đầu thu thập
+    ỨngDụng -> Dataset : Thu thập và thêm dữ liệu
+    ỨngDụng -> MôHình : Training dữ liệu
+    MôHình --> ỨngDụng : Kết quả huấn luyện
+    ỨngDụng -> GiaoDiện : Thông báo thành công
 end
 @enduml
